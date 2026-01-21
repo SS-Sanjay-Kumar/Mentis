@@ -1,9 +1,8 @@
 import express from 'express';
-import dotenv from 'dotenv/config.js';
 
+import { ENV } from './lib/env.js';
 import { connectDB } from './lib/db.js';
 
-const PORT = process.env.PORT;
 const app = express();
 
 app.get("/health", (req, res) => {
@@ -12,7 +11,7 @@ app.get("/health", (req, res) => {
     });
 })
 
-app.listen(PORT, () => {
-    console.log("Server running at port ", PORT);
+app.listen(ENV.PORT, () => {
+    console.log("Server running at port:", ENV.PORT);
     connectDB();
 })
