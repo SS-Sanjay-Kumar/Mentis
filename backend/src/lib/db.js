@@ -3,6 +3,9 @@ import { ENV } from './env.js';
 
 export const connectDB = async () => {
     try {
+        if (!ENV.MONGODB_URI) {
+            console.error("Error: Missing MONGODB_URI in environment variables");
+        }
         const dbResponse = await mongoose.connect(ENV.MONGODB_URI);
         if (!dbResponse) {
             console.error("Error connecting to MONGODB");
@@ -11,6 +14,6 @@ export const connectDB = async () => {
         console.log("Mongo DB Connected successfully ", dbResponse.connection.host);
     } catch (error) {
         console.error("Error connecting to MONGODB", error);
-        process.exit(1); 
+        process.exit(1);
     }
 };
