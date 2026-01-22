@@ -8,6 +8,7 @@ import { ENV } from './lib/env.js';
 import { connectDB } from './lib/db.js';
 import { functions, inngest } from './lib/inngest.js';
 import chatRoutes from './routes/chatRoutes.js';
+import sessionRoutes from './routes/sessionRoutes.js';
 
 const app = express();
 const __dirname = path.resolve();
@@ -22,6 +23,7 @@ app.use(clerkMiddleware());
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/chat", chatRoutes);
+app.use("/api/sessions", sessionRoutes);
 
 app.get("/health", (req, res) => {
     return res.status(200).json({
