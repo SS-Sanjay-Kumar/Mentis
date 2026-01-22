@@ -1,4 +1,4 @@
-import { Session } from "@clerk/express";
+import Session from "../models/Session.js";
 import { chatClient, streamClient } from "../lib/stream.js";
 
 export async function createSession(req, res) {
@@ -74,7 +74,7 @@ export async function getPastSessions(req, res) {
 
 export async function getSessionById(req, res) {
     try {
-        const { id } = req.params.id;
+        const { id } = req.params;
         const session = await Session.findById(id)
             .populate("host", "name email profilePic clerkId")
             .populate("participant", "name email profilePic clerkId");
@@ -90,14 +90,14 @@ export async function getSessionById(req, res) {
 
 export async function joinSession(req, res) {
     try {
-        const { id } = req.params.id;
+        const { id } = req.params;
         const userId = req.user._id;
         const clerkId = req.user.clerkId;
 
         const session = await Session.findById(id);
         if (!session) return res.status(404).json({ message: "Session not found" });
 
-        if (session.participant) return res.status(404).json({ message: "Session is full" });
+        if (session.participant) return res.status(400).json({ message: "Session is full" });
 
         session.participant = userId;
         await session.save();
@@ -105,7 +105,7 @@ export async function joinSession(req, res) {
         const channel = chatClient.channel("messaging", session.callId);
         await channel.addMembers([clerkId]);
 
-        return res.status(200).json({ message: "Internal Server Error" });
+        return res.status(200).json({ session, message: "Joined the session successfully" });
 
     } catch (error) {
         console.error("Error joining session: ", error)
@@ -115,7 +115,7 @@ export async function joinSession(req, res) {
 
 export async function endSession(req, res) {
     try {
-        const { id } = req.params.id;
+        const { id } = req.params;
         const userId = req.user._id;
 
         const session = await Session.findById(id);
