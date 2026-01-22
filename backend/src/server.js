@@ -1,8 +1,9 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
-
 import { serve } from 'inngest/express';
+import { clerkMiddleware } from '@clerk/express';
+
 import { ENV } from './lib/env.js';
 import { connectDB } from './lib/db.js';
 import { functions, inngest } from './lib/inngest.js';
@@ -16,6 +17,7 @@ app.use(cors({
     origin: ENV.CLIENT_URL,
     credentials: true,
 }));
+app.use(clerkMiddleware());
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
@@ -46,5 +48,4 @@ const startServer = async () => {
 
     }
 }
-
 startServer();
