@@ -74,9 +74,17 @@ export async function getPastSessions(req, res) {
 
 export async function getSessionById(req, res) {
     try {
+        const { id } = req.params.id;
+        const session = await Session.findById(id)
+            .populate("host", "name email profilePic clerkId")
+            .populate("participant", "name email profilePic clerkId");
+
+        if (!session) return res.status(404).json({ message: "Session not found" });
+        return res.status(200).json({ session });
 
     } catch (error) {
-
+        console.error("Error fetching session by Id", error)
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 }
 
@@ -84,7 +92,8 @@ export async function joinSession(req, res) {
     try {
 
     } catch (error) {
-
+        console.error("Error joining session: ", error)
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 }
 
