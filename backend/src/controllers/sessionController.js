@@ -41,16 +41,33 @@ export async function createSession(req, res) {
 
 export async function getActiveSessions(req, res) {
     try {
+        const activeSessions = await Session.find({ status: "active" })
+            .populate("host", "name email profilePic clerkId")
+            .sort({ createdAt: -1 })
+            .limit(20);
+        return res.status(200).json({ activeSessions })
 
     } catch (error) {
-
+        console.error("Error fetching active sessions", error)
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 }
 
 export async function getPastSessions(req, res) {
     try {
+        const userId = req.user._id;
+        const pastSessions = await Session.find({
+            status: "completed",
+            $or: [{ host: userId }, { participant: userId }]
+        })
+            .sort({ createdAt: -1 })
+            .limit(20);
+
+        return res.status(200).json({ pastSessions })
 
     } catch (error) {
+        console.error("Error fetching past sessions", error)
+        return res.status(500).json({ message: "Internal Server Error" });
 
     }
 }
