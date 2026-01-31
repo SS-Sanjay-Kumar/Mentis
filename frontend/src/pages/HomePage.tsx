@@ -7,13 +7,17 @@ import {
     UserButton,
 
 } from '@clerk/clerk-react'
+import toast from 'react-hot-toast'
 
 function HomePage() {
     return (
         <div>
+            <button className='btn btn-ghost' onClick={() => toast.success("Clicked")}>Click</button>
             <SignedIn>
                 <h1 >Welcome to mentis</h1>
-                <SignOutButton className="btn btn-accent" />
+                <div className="btn btn-accent">
+                    <SignOutButton />
+                </div>
             </SignedIn>
 
             <SignedOut>
