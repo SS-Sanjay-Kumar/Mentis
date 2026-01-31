@@ -15,7 +15,7 @@ const router = express.Router();
 router.post("/", protectRoute, createSession);
 
 router.get("/active", protectRoute, getActiveSessions);
-router.get("/past-session", protectRoute, getPastSessions);
+router.get("/past-sessions", protectRoute, getPastSessions);
 
 router.get("/:id", protectRoute, getSessionById);
 router.post("/:id/join", protectRoute, joinSession);

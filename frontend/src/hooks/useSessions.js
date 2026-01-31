@@ -19,7 +19,6 @@ export const useActiveSessions = () => {
         queryKey: ["activeSessions"],
         queryFn: sessionApi.getActiveSessions,
     });
-
     return result;
 };
 
