@@ -7,12 +7,14 @@ import {
     UsersIcon,
     VideoIcon,
     ZapIcon,
+    Palette,
 } from "lucide-react";
 import { SignInButton } from "@clerk/clerk-react";
 
 import { HeroIllustration } from "../components/HeroIllustration";
 
 function HomePage() {
+
     return (
         <div className="bg-linear-to-br from-base-100 via-base-200 to-base-300">
             {/* NAVBAR */}
@@ -34,16 +36,30 @@ function HomePage() {
                             <span className="text-xs text-base-content/60 font-medium -mt-1">Code Together</span>
                         </div>
                     </Link>
+                    {/* RIGHT ACTIONS */}
+                    <div className="flex items-center gap-3">
+                        {/* THEMES */}
+                        <Link
+                            to="/themes"
+                            className="p-2.5 rounded-lg transition-all duration-200 hover:bg-base-200"
+                            title="Themes"
+                        >
+                            <Palette className="size-5" />
+                        </Link>
 
-                    {/* AUTH BTN */}
-                    <SignInButton mode="modal">
-                        <button className="group px-6 py-3 rounded-xl font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center gap-2
-    bg-linear-to-r from-primary to-secondary text-primary-content">
+                        {/* AUTH BTN */}
+                        <SignInButton mode="modal">
+                            <button
+                                className="group px-6 py-3 rounded-xl font-semibold text-sm shadow-lg hover:shadow-xl 
+      transition-all duration-200 hover:scale-105 flex items-center gap-2
+      bg-linear-to-r from-primary to-secondary text-primary-content"
+                            >
+                                <span>Get Started</span>
+                                <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" />
+                            </button>
+                        </SignInButton>
+                    </div>
 
-                            <span>Get Started</span>
-                            <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" />
-                        </button>
-                    </SignInButton>
 
                 </div>
             </nav>
