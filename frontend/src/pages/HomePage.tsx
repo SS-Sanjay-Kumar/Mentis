@@ -23,12 +23,12 @@ function HomePage() {
                         to={"/"}
                         className="flex items-center gap-3 hover:scale-105 transition-transform duration-200"
                     >
-                        <div className="size-10 rounded-xl bg-linear-to-br from-primary via-secondary to-accent flex items-center justify-center shadow-lg">
+                        <div className="size-10 rounded-xl bg-linear-to-br from-primary  to-accent flex items-center justify-center shadow-lg">
                             <ChevronsLeftRightEllipsis className="size-6 text-white" />
                         </div>
 
                         <div className="flex flex-col">
-                            <span className="font-black text-xl bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-mono tracking-wider">
+                            <span className="font-black text-xl bg-linear-to-r from-primary  to-accent bg-clip-text text-transparent font-mono tracking-wider">
                                 Mentis
                             </span>
                             <span className="text-xs text-base-content/60 font-medium -mt-1">Code Together</span>
@@ -59,7 +59,7 @@ function HomePage() {
                         </div>
 
                         <h1 className="text-5xl lg:text-7xl font-black leading-tight">
-                            <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                            <span className="bg-linear-to-r from-primary  to-accent bg-clip-text text-transparent">
                                 Code Together,
                             </span>
                             <br />
