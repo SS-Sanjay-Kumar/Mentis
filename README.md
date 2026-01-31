@@ -1,9 +1,9 @@
 # Mentis
 
 **Mentis** is a real-time collaborative coding interview and pair-programming platform that combines live video calls, a shared code editor, chat, and session management — all in one place.
-
 It is designed to simulate real technical interview environments while remaining lightweight, developer-friendly, and extensible.
-**Live Link**: https://mentis-0unb.onrender.com/
+
+Live Link: ```https://mentis-0unb.onrender.com/```
 ---
 
 ## Features
